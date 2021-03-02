@@ -1090,11 +1090,13 @@ export class IonicSelectableComponent implements ControlValueAccessor, OnInit, D
   }
 
   _close() {
-    this.close().then(() => {
-      this.onClose.emit({
-        component: this
-      });
-    });
+    this.close()
+      .then(() => {
+        this.onClose.emit({
+          component: this
+        });
+      })
+      .catch(e => { });
 
     if (!this._hasOnSearch()) {
       this._searchText = '';
@@ -1108,11 +1110,13 @@ export class IonicSelectableComponent implements ControlValueAccessor, OnInit, D
     this.clear();
     this._emitValueChange();
     this._emitOnClear(selectedItems);
-    this.close().then(() => {
+    this.close()
+    .then(() => {
       this.onClose.emit({
         component: this
       });
-    });
+    })
+    .catch(e => {});
   }
 
   _getMoreItems() {
